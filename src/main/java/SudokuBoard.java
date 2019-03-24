@@ -63,17 +63,15 @@ public class SudokuBoard {
         board[x][y] = value;
     }
 
-    SudokuBoard (SudokuBoard board) {
-        for(int i=0;i<9;i++)
-        {
-            for(int j=0;j<9;j++)
-            {
-                this.board[i][j]=board.get(i,j);
+    SudokuBoard(final SudokuBoard board) {
+        for (int i=0; i < 9; i++) {
+            for (int j=0; j < 9; j++) {
+                this.board[i][j]=board.get(i, j);
             }
         }
     }
 
-    SudokuBoard () {
+    SudokuBoard() {
 
     }
 

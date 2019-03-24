@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BacktrackingSudokuSolver {
-    private boolean findUnassignedField(SudokuBoard board, final int[] pos) {
+    private boolean findUnassignedField(final SudokuBoard board, final int[] pos) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (board.get(i, j) == 0) {
@@ -16,10 +16,10 @@ public class BacktrackingSudokuSolver {
         return false;
     }
 
-    private boolean isValidChoice(SudokuBoard board, final int[] pos, int num) {
+    private boolean isValidChoice(final SudokuBoard board, final int[] pos, int num) {
         //Check if num is already present in given row
         for (int i = 0; i < 9; i++) {
-            if (board.get(pos[0],i) == num) {
+            if (board.get(pos[0], i) == num) {
                 return false;
             }
 
@@ -38,7 +38,7 @@ public class BacktrackingSudokuSolver {
 
         for (int i = squareRowBegining; i < squareRowBegining + 3; i++) {
             for (int j = squareColBegining; j < squareColBegining + 3; j++) {
-                if (board.get(i,j) == num) {
+                if (board.get(i, j) == num) {
                     return false;
                 }
             }
@@ -47,7 +47,7 @@ public class BacktrackingSudokuSolver {
         return true;
     }
 
-    public boolean solve(SudokuBoard board) {
+    public boolean solve(final SudokuBoard board) {
         //pos[0] represents a row
         //pos[1] represents a column
         int[] pos = {0, 0};
