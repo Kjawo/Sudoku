@@ -1,31 +1,29 @@
+import org.junit.Test;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class SudokuBoard {
-    private int[][] board = new int[9][9];
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.*;
 
-    public int[][] getBoard(){
-        int[][] boardCopy = new int[9][9];
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                boardCopy[i][j] = board[i][j];
-            }
-        }
-        return boardCopy;
-    }
+public class BacktrackingSudokuSolverTest {
 
-    public boolean checkBoard() {
+    @Test
+    public void solveTest() {
+        SudokuBoard instance = new SudokuBoard();
+        BacktrackingSudokuSolver solver = new BacktrackingSudokuSolver();
+        solver.solve(instance);
+        int[][] board = instance.getBoard();
         for (int i = 0; i < 9; i++) { //first check in rows and columns
             List<Integer> column = new ArrayList<>();
             List<Integer> row = new ArrayList<>();
             for (int j = 0; j < 9; j++) {
                 if (row.contains(board[i][j])) {
-                    return false;
+                    fail("Number is duplicated in row");
                 }
                 row.add(board[i][j]);
                 if (column.contains(board[j][i])) {
-                    return false;
+                    fail("Number is duplicated in column");
                 }
                 column.add(board[j][i]);
             }
@@ -43,7 +41,7 @@ public class SudokuBoard {
                 for (int k = 0; k < 3; k++) {
                     int position = k + j * 9 + i * 3 + last; // position of numbers in square
                     if (square.contains(matrixInArray.get(position))) {
-                        return false; //if number is duplicated in square
+                        fail("Number is duplicated in square"); //if number is duplicated in square
                     }
                     square.add(matrixInArray.get(position));
                 }
@@ -52,27 +50,5 @@ public class SudokuBoard {
                 last += 18; // number for "jump" to square below "row" of square
             }
         }
-        return true;
     }
-
-   public int get(int x, int y) {
-        return board[x][y];
-    }
-
-   public void set(int x, int y, int value) {
-        board[x][y] = value;
-    }
-
-    SudokuBoard(final SudokuBoard board) {
-        for (int i=0; i < 9; i++) {
-            for (int j=0; j < 9; j++) {
-                this.board[i][j]=board.get(i, j);
-            }
-        }
-    }
-
-    SudokuBoard() {
-
-    }
-
 }
