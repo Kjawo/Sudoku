@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SudokuBoard {
@@ -55,20 +54,12 @@ public class SudokuBoard {
         return true;
     }
 
-   public int get(int x, int y) {
+    public int get(int x, int y) {
         return board[x][y];
     }
 
-   public void set(int x, int y, int value) {
+    public void set(int x, int y, int value) {
         board[x][y] = value;
-    }
-
-    SudokuBoard(final SudokuBoard board) {
-        for (int i=0; i < 9; i++) {
-            for (int j=0; j < 9; j++) {
-                this.board[i][j]=board.get(i, j);
-            }
-        }
     }
 
     SudokuBoard() {

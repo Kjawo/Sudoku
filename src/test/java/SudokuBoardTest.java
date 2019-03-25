@@ -34,4 +34,22 @@ public class SudokuBoardTest {
         instance.set(0,0,3);
         assertEquals(instance.get(0,0),3);
     }
+
+    @Test
+    public void testGetBoard() {
+        SudokuBoard instance = new SudokuBoard();
+        for(int i=0; i < 9; i++) {
+            for(int j=0; j < 9; j++) {
+                instance.set(i, j, 5);
+            }
+        }
+        int[][] five = new int[9][9];
+        for(int i=0; i < 9; i++) {
+            for(int j=0; j < 9; j++) {
+                five[i][j] = 5;
+            }
+        }
+        assertEquals(false, instance.checkBoard());
+        assertArrayEquals(five, instance.getBoard());
+    }
 }
