@@ -11,7 +11,7 @@ public class BacktrackingSudokuSolverTest {
     @Test
     public void solveTest() {
         SudokuBoard instance = new SudokuBoard();
-        BacktrackingSudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuSolver solver = new BacktrackingSudokuSolver();
         solver.solve(instance);
         int[][] board = instance.getBoard();
         for (int i = 0; i < 9; i++) { //first check in rows and columns

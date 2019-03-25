@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BacktrackingSudokuSolver {
+public class BacktrackingSudokuSolver implements SudokuSolver {
     private boolean findUnassignedField(final SudokuBoard board, final int[] pos) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -47,6 +47,7 @@ public class BacktrackingSudokuSolver {
         return true;
     }
 
+    @Override
     public boolean solve(final SudokuBoard board) {
         //pos[0] represents a row
         //pos[1] represents a column
