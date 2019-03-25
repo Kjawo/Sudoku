@@ -54,11 +54,11 @@ public class SudokuBoard {
         return true;
     }
 
-   public int get(int x, int y) {
+    public int get(int x, int y) {
         return board[x][y];
     }
 
-   public void set(int x, int y, int value) {
+    public void set(int x, int y, int value) {
         board[x][y] = value;
     }
 
