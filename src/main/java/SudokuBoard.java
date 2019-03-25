@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SudokuBoard {
     private int[][] board = new int[9][9];
 
-    public int[][] getBoard(){
+    public int[][] getBoard() {
         int[][] boardCopy = new int[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -61,14 +60,6 @@ public class SudokuBoard {
 
    public void set(int x, int y, int value) {
         board[x][y] = value;
-    }
-
-    SudokuBoard(final SudokuBoard board) {
-        for (int i=0; i < 9; i++) {
-            for (int j=0; j < 9; j++) {
-                this.board[i][j]=board.get(i, j);
-            }
-        }
     }
 
     SudokuBoard() {
