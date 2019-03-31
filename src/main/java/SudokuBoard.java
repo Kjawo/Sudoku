@@ -78,7 +78,13 @@ public class SudokuBoard {
     }
 
     SudokuBoard() {
-
+        board = new SudokuField[9][9];
+        for(int i = 0; i < 9; i++) {
+            board[i] = new SudokuField[9];
+            for(int j = 0; j < 9; j++){
+                board[i][j] = new SudokuField();
+            }
+        }
     }
 
 }
