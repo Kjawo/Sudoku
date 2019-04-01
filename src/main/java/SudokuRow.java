@@ -1,7 +1,4 @@
-class SudokuRow
-        extends FieldArray {
-    ////////////////////////////////////////////////////////////////// [Methods]
-    //----------------------------------------------------------- Constructors <
+class SudokuRow extends FieldArray {
     SudokuRow(final SudokuField[] fields) {
         super(fields);
     }
