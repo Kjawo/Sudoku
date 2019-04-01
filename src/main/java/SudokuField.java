@@ -17,22 +17,5 @@ public class SudokuField {
         this.value = value;
     }
 
-//    @Override
-//    public boolean equals(final Object object) {
-//        if (object == this) {
-//            return true;
-//        }
-//        if (object == null || object.getClass() != getClass()) {
-//            return false;
-//        }
-//        SudokuField field = (SudokuField) object;
-//        return field.value == this.value;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(value);
-//    }
-
     private int value;
 }
