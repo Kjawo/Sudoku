@@ -17,34 +17,42 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
     }
 
     private boolean isValidChoice(final SudokuBoard board, final int[] pos, int num) {
-        //Check if num is already present in given row
-        for (int i = 0; i < 9; i++) {
-            if (board.get(pos[0], i) == num) {
-                return false;
-            }
-
+        board.set(pos[0], pos[1], num);
+        boolean isValid = board.checkBoard(false);
+        if (isValid) {
+            return true;
+        } else {
+            board.set(pos[0], pos[1], 0);
+            return false;
         }
-
-        //Check if num is already present in given col
-        for (int i = 0; i < 9; i++) {
-            if (board.get(i, pos[1]) == num) {
-                return false;
-            }
-        }
-
-        //Check if num is already present in given square
-        int squareRowBegining = pos[0] - pos[0] % 3;
-        int squareColBegining = pos[1] - pos[1] % 3;
-
-        for (int i = squareRowBegining; i < squareRowBegining + 3; i++) {
-            for (int j = squareColBegining; j < squareColBegining + 3; j++) {
-                if (board.get(i, j) == num) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+//        //Check if num is already present in given row
+//        for (int i = 0; i < 9; i++) {
+//            if (board.get(pos[0], i) == num) {
+//                return false;
+//            }
+//
+//        }
+//
+//        //Check if num is already present in given col
+//        for (int i = 0; i < 9; i++) {
+//            if (board.get(i, pos[1]) == num) {
+//                return false;
+//            }
+//        }
+//
+//        //Check if num is already present in given square
+//        int squareRowBegining = pos[0] - pos[0] % 3;
+//        int squareColBegining = pos[1] - pos[1] % 3;
+//
+//        for (int i = squareRowBegining; i < squareRowBegining + 3; i++) {
+//            for (int j = squareColBegining; j < squareColBegining + 3; j++) {
+//                if (board.get(i, j) == num) {
+//                    return false;
+//                }
+//            }
+//        }
+//
+//        return true;
     }
 
     @Override

@@ -12,7 +12,7 @@ public class FieldArrayTest {
             sf[i].setFieldValue(i);
         }
         FieldArray fa = new FieldArray(sf);
-        assertEquals(true, fa.verify());
+        assertEquals(true, fa.verify(true));
     }
 
     @Test
@@ -23,6 +23,6 @@ public class FieldArrayTest {
             sf[i].setFieldValue(1);
         }
         FieldArray fa = new FieldArray(sf);
-        assertEquals(false, fa.verify());
+        assertEquals(false, fa.verify(true));
     }
 }

@@ -56,7 +56,8 @@ public class SudokuBoardTest {
                 instance.set(i, j, goodBoard[i][j]);
             }
         }
-        assertEquals(true, instance.checkBoard());
+
+        assertEquals(true, instance.checkBoard(true));
     }
 
     @Test
@@ -79,7 +80,8 @@ public class SudokuBoardTest {
                 instance.set(i, j, wrongBoard[i][j]);
             }
         }
-        assertEquals(false, instance.checkBoard());
+        assertEquals(false, instance.checkBoard(true));
+
     }
 
 }

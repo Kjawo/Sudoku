@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SudokuBoard {
+
+
     private SudokuField[][] board;
 
     public SudokuField[][] getBoard() {
@@ -14,16 +16,16 @@ public class SudokuBoard {
         return boardCopy;
     }
 
-    public boolean checkBoard() {
+    public boolean checkBoard(boolean considerZeroes) {
         for (int i = 0; i < 9; i++) {
-                if (!getRow(i).verify() || !getColumn(i).verify()) {
+                if (!getRow(i).verify(considerZeroes) || !getColumn(i).verify(considerZeroes)) {
                     return false;
                 }
             }
 
         for (int i = 0; i < (9 / 3); i++) {
         for (int j = 0; j < (9 / 3); j++) {
-            if (!getBox(3 * i, 3 * j).verify()) {
+            if (!getBox(3 * i, 3 * j).verify(considerZeroes)) {
                 return false;
             }
         }
