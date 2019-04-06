@@ -1,15 +1,22 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class FieldArrayTest {
 
     @Test
     public void verifyCheck1() {
-        SudokuField[] sf = new SudokuField[9];
+        ArrayList<SudokuField> sf = new ArrayList<SudokuField>(9);
         for(int i = 0; i < 9; i++) {
-            sf[i] = new SudokuField();
-            sf[i].setFieldValue(i);
+            sf.add(new SudokuField());
+        }
+        for(int i = 0; i < 9; i++) {
+            sf.set(i, new SudokuField());
+            sf.get(i).setFieldValue(i);
         }
         FieldArray fa = new FieldArray(sf);
         assertEquals(true, fa.verify(true));
@@ -17,10 +24,13 @@ public class FieldArrayTest {
 
     @Test
     public void verifyCheck2() {
-        SudokuField[] sf = new SudokuField[9];
+        ArrayList<SudokuField> sf = new ArrayList<SudokuField>(9);
         for(int i = 0; i < 9; i++) {
-            sf[i] = new SudokuField();
-            sf[i].setFieldValue(1);
+            sf.add(new SudokuField());
+        }
+        for(int i = 0; i < 9; i++) {
+            sf.set(i, new SudokuField());
+            sf.get(i).setFieldValue(1);
         }
         FieldArray fa = new FieldArray(sf);
         assertEquals(false, fa.verify(true));

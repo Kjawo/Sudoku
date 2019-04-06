@@ -1,16 +1,15 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class SudokuBoard {
 
 
-    private SudokuField[][] board;
+    private ArrayList<ArrayList<SudokuField>> board;
 
-    public SudokuField[][] getBoard() {
-        SudokuField[][] boardCopy = new SudokuField[9][9];
+    public ArrayList<ArrayList<SudokuField>> getBoard() {
+        ArrayList<ArrayList<SudokuField>> boardCopy = createEmptyArrayListOfArrayListOfSudokuField();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                boardCopy[i][j].setFieldValue(board[i][j].getFieldValue());
+                boardCopy.get(i).get(j).setFieldValue(board.get(i).get(j).getFieldValue());
             }
         }
         return boardCopy;
@@ -35,19 +34,20 @@ public class SudokuBoard {
     }
 
     public int get(int x, int y) {
-        return board[x][y].getFieldValue();
+        return board.get(x).get(y).getFieldValue();
     }
 
     public void set(int x, int y, int value) {
-        board[x][y].setFieldValue(value);
+        board.get(x).get(y).setFieldValue(value);
     }
 
     public SudokuRow getRow(final int x) {
 
-        SudokuField[] row = new SudokuField[9];
+        ArrayList<SudokuField> row = new ArrayList<SudokuField>(9);
 
-        for (int i = 0; i < row.length; i++) {
-            row[i] = board[x][i];
+        for (int i = 0; i < 9; i++) {
+            row.add(new SudokuField());
+            row.set(i, board.get(x).get(i));
         }
 
         return new SudokuRow(row);
@@ -55,10 +55,11 @@ public class SudokuBoard {
 
     public SudokuColumn getColumn(final int y) {
 
-        SudokuField[] column = new SudokuField[9];
+        ArrayList<SudokuField> column = new ArrayList<SudokuField>(9);
 
-        for (int i = 0; i < column.length; i++) {
-            column[i] = board[i][y];
+        for (int i = 0; i < 9; i++) {
+            column.add(new SudokuField());
+            column.set(i, board.get(i).get(y));
         }
 
         return new SudokuColumn(column);
@@ -66,27 +67,34 @@ public class SudokuBoard {
 
     public SudokuBox getBox(final int x, final int y) {
 
-        SudokuField[] box = new SudokuField[9];
+        ArrayList<SudokuField> box = new ArrayList<SudokuField>(9);
         int boxStartX = (x / 3) * 3;
         int boxStartY = (y / 3) * 3;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                box[3 * i + j] = board[boxStartX + i][boxStartY + j];
+                box.add(new SudokuField());
+                box.set( (3 * i + j), board.get(boxStartX + i).get(boxStartY + j));
             }
         }
 
         return new SudokuBox(box);
     }
 
-    SudokuBoard() {
-        board = new SudokuField[9][9];
+    private ArrayList<ArrayList<SudokuField>> createEmptyArrayListOfArrayListOfSudokuField() {
+        ArrayList<ArrayList<SudokuField>> tmpBoard = new ArrayList<ArrayList<SudokuField>>(9);
         for (int i = 0; i < 9; i++) {
-            board[i] = new SudokuField[9];
+            tmpBoard.add(new ArrayList<SudokuField>(9));
             for (int j = 0; j < 9; j++) {
-                board[i][j] = new SudokuField();
+                tmpBoard.get(i).add(new SudokuField());
+//                tmpBoard.get(i).set(j, new SudokuField());
             }
         }
+        return tmpBoard;
+    }
+
+    SudokuBoard() {
+        board = createEmptyArrayListOfArrayListOfSudokuField();
     }
 
 }

@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 class SudokuBox extends FieldArray {
-    SudokuBox(final SudokuField[] fields) {
+    SudokuBox(final ArrayList<SudokuField> fields) {
         super(fields);
     }
 

@@ -1,9 +1,12 @@
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 
 class FieldArray {
 
-    FieldArray(final SudokuField[] fields) {
-        sudokuFields = Arrays.copyOf(fields, fields.length);
+    FieldArray(final ArrayList<SudokuField> fields) {
+//        sudokuFields = ArrayList.copyOf(fields, fields.size());
+        sudokuFields = new ArrayList<SudokuField>(fields);
     }
 
     boolean verify(boolean considerZeroes) {
@@ -27,5 +30,5 @@ class FieldArray {
         return true;
     }
 
-    private SudokuField[] sudokuFields;
+    private ArrayList<SudokuField> sudokuFields;
 }

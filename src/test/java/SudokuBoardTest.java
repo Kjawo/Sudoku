@@ -2,6 +2,9 @@ import junit.framework.TestCase;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.*;
@@ -50,6 +53,15 @@ public class SudokuBoardTest {
                 {2,8,7,4,1,9,6,3,5},
                 {3,4,5,2,8,6,1,7,9}
         };
+
+        ArrayList<ArrayList<SudokuField>> gB = new ArrayList<>(9);
+        for (int[] ints : goodBoard) {
+            ArrayList<SudokuField> list = new ArrayList<>(9);
+            for (int i : ints) {
+                list.add(new SudokuField(i));
+            }
+            gB.add(list);
+        }
 
         for(int i = 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
