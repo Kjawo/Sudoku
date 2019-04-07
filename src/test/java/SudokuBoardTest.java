@@ -4,6 +4,7 @@ import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
@@ -34,8 +35,8 @@ public class SudokuBoardTest {
     @Test
     public void testSetGet() {
         SudokuBoard instance = new SudokuBoard();
-        instance.set(0,0,3);
-        assertEquals(instance.get(0,0),3);
+        instance.set(0, 0, 3);
+        assertEquals(instance.get(0, 0), 3);
     }
 
     @Test
@@ -43,15 +44,15 @@ public class SudokuBoardTest {
         SudokuBoard instance = new SudokuBoard();
         int goodBoard[][] = {
 
-                {5,3,4,6,7,8,9,1,2},
-                {6,7,2,1,9,5,3,4,8},
-                {1,9,8,3,4,2,5,6,7},
-                {8,5,9,7,6,1,4,2,3},
-                {4,2,6,8,5,3,7,9,1},
-                {7,1,3,9,2,4,8,5,6},
-                {9,6,1,5,3,7,2,8,4},
-                {2,8,7,4,1,9,6,3,5},
-                {3,4,5,2,8,6,1,7,9}
+                {5, 3, 4, 6, 7, 8, 9, 1, 2},
+                {6, 7, 2, 1, 9, 5, 3, 4, 8},
+                {1, 9, 8, 3, 4, 2, 5, 6, 7},
+                {8, 5, 9, 7, 6, 1, 4, 2, 3},
+                {4, 2, 6, 8, 5, 3, 7, 9, 1},
+                {7, 1, 3, 9, 2, 4, 8, 5, 6},
+                {9, 6, 1, 5, 3, 7, 2, 8, 4},
+                {2, 8, 7, 4, 1, 9, 6, 3, 5},
+                {3, 4, 5, 2, 8, 6, 1, 7, 9}
         };
 
         ArrayList<ArrayList<SudokuField>> gB = new ArrayList<>(9);
@@ -63,8 +64,8 @@ public class SudokuBoardTest {
             gB.add(list);
         }
 
-        for(int i = 0; i < 9; i++) {
-            for(int j = 0; j < 9; j++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 instance.set(i, j, goodBoard[i][j]);
             }
         }
@@ -73,27 +74,37 @@ public class SudokuBoardTest {
     }
 
     @Test
-    public void testCheckBoard2(){
+    public void testCheckBoard2() {
         SudokuBoard instance = new SudokuBoard();
         int wrongBoard[][] = {
 
-                {5,3,4,6,7,8,9,1,2},
-                {6,7,2,1,9,5,3,4,8},
-                {1,9,8,3,4,2,5,6,7},
-                {8,5,9,7,6,1,4,2,3},
-                {4,1,6,8,5,3,7,9,1}, //1 twice
-                {7,1,3,9,2,4,8,5,6},
-                {9,6,1,5,3,7,2,8,4},
-                {2,8,7,4,1,9,6,3,5},
-                {3,4,5,2,8,6,1,7,9}
+                {5, 3, 4, 6, 7, 8, 9, 1, 2},
+                {6, 7, 2, 1, 9, 5, 3, 4, 8},
+                {1, 9, 8, 3, 4, 2, 5, 6, 7},
+                {8, 5, 9, 7, 6, 1, 4, 2, 3},
+                {4, 1, 6, 8, 5, 3, 7, 9, 1}, //1 twice
+                {7, 1, 3, 9, 2, 4, 8, 5, 6},
+                {9, 6, 1, 5, 3, 7, 2, 8, 4},
+                {2, 8, 7, 4, 1, 9, 6, 3, 5},
+                {3, 4, 5, 2, 8, 6, 1, 7, 9}
         };
-        for(int i = 0; i < 9; i++) {
-            for(int j = 0; j < 9; j++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 instance.set(i, j, wrongBoard[i][j]);
             }
         }
         assertEquals(false, instance.checkBoard(true));
 
     }
+
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testFixedList() {
+        List<SudokuField> l1 = Arrays.asList(new SudokuField[9]);
+        //ArrayList<SudokuField> l2 = new ArrayList<>();
+        assertEquals(l1.size(), 9);
+        l1.add(new SudokuField());
+    }
+
 
 }

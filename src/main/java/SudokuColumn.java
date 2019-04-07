@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
 
 class SudokuColumn extends FieldArray {
-    SudokuColumn(final ArrayList<SudokuField> fields) {
+    SudokuColumn(final List<SudokuField> fields) {
         super(fields);
     }
 
