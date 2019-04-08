@@ -1,14 +1,13 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class SudokuBoard {
 
 
-    private ArrayList<ArrayList<SudokuField>> board;
+    private List<List<SudokuField>> board;
 
-    public ArrayList<ArrayList<SudokuField>> getBoard() {
-        ArrayList<ArrayList<SudokuField>> boardCopy = createEmptyArrayListOfArrayListOfSudokuField();
+    public List<List<SudokuField>> getBoard() {
+        List<List<SudokuField>> boardCopy = createEmptyBoard();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 boardCopy.get(i).get(j).setFieldValue(board.get(i).get(j).getFieldValue());
@@ -83,13 +82,16 @@ public class SudokuBoard {
         return new SudokuBox(box);
     }
 
-    private ArrayList<ArrayList<SudokuField>> createEmptyArrayListOfArrayListOfSudokuField() {
-        ArrayList<ArrayList<SudokuField>> tmpBoard = new ArrayList<ArrayList<SudokuField>>(9);
+    private List<SudokuField> createEmptyRow() {
+        return Arrays.asList(new SudokuField[9]);
+    }
+
+    private List<List<SudokuField>> createEmptyBoard() {
+        List<List<SudokuField>> tmpBoard = Arrays.asList(createEmptyRow(), createEmptyRow(), createEmptyRow(),
+                createEmptyRow(),createEmptyRow(),createEmptyRow(),createEmptyRow(),createEmptyRow(),createEmptyRow());
         for (int i = 0; i < 9; i++) {
-            tmpBoard.add(new ArrayList<SudokuField>(9));
             for (int j = 0; j < 9; j++) {
-                tmpBoard.get(i).add(new SudokuField());
-//                tmpBoard.get(i).set(j, new SudokuField());
+                tmpBoard.get(i).set(j, new SudokuField());
             }
         }
         return tmpBoard;
@@ -97,7 +99,7 @@ public class SudokuBoard {
 
 
     SudokuBoard() {
-        board = createEmptyArrayListOfArrayListOfSudokuField();
+        board = createEmptyBoard();
     }
 
 }

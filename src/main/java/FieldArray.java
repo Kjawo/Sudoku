@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class FieldArray {
 
     FieldArray(final List<SudokuField> fields) {
-        sudokuFields = new ArrayList<SudokuField>(fields);
+        sudokuFields = fields;
     }
 
     boolean verify(boolean considerZeroes) {
@@ -28,5 +29,5 @@ class FieldArray {
         return true;
     }
 
-    private ArrayList<SudokuField> sudokuFields;
+    private List<SudokuField> sudokuFields;
 }
