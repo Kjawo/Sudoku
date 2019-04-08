@@ -1,12 +1,9 @@
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 class FieldArray {
 
     FieldArray(final List<SudokuField> fields) {
-//        sudokuFields = ArrayList.copyOf(fields, fields.size());
         sudokuFields = new ArrayList<SudokuField>(fields);
     }
 

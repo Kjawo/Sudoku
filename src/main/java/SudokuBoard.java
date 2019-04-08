@@ -76,7 +76,7 @@ public class SudokuBoard {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 //box.add(new SudokuField());
-                box.set( (3 * i + j), board.get(boxStartX + i).get(boxStartY + j));
+                box.set((3 * i + j), board.get(boxStartX + i).get(boxStartY + j));
             }
         }
 
