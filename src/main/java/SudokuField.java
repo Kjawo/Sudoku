@@ -1,6 +1,13 @@
-import java.util.Objects;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SudokuField {
+    @Override
+    public String toString()
+    {
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(value).toString();
+    }
+
     public SudokuField() {
         this(0);
     }
