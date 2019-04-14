@@ -1,8 +1,15 @@
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 class FieldArray {
+
+    private List<SudokuField> sudokuFields;
 
     FieldArray(final List<SudokuField> fields) {
         sudokuFields = fields;
@@ -29,5 +36,33 @@ class FieldArray {
         return true;
     }
 
-    private List<SudokuField> sudokuFields;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        FieldArray that = (FieldArray) o;
+
+        return new EqualsBuilder()
+                .append(sudokuFields, that.sudokuFields)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(sudokuFields)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString()
+    {
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(sudokuFields).toString();
+    }
 }
