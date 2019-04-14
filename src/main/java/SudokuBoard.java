@@ -107,9 +107,10 @@ public class SudokuBoard {
     }
 
     @Override
-    public String toString()
-    {
-        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(board).toString();
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+                .append("Board", board)
+                .toString();
     }
 
     @Override

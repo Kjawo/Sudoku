@@ -61,8 +61,9 @@ class FieldArray {
     }
 
     @Override
-    public String toString()
-    {
-        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(sudokuFields).toString();
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+                .append("sudokuFields", sudokuFields)
+                .toString();
     }
 }

@@ -24,12 +24,6 @@ public class SudokuField {
     }
 
     @Override
-    public String toString()
-    {
-        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(value).toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -51,5 +45,12 @@ public class SudokuField {
         return new HashCodeBuilder(17, 37)
                 .append(value)
                 .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+                .append("Value", value)
+                .toString();
     }
 }
