@@ -25,7 +25,7 @@ class FieldArray {
                 if (field1 == field2) {
                     continue;
                 }
-                if (field1.getFieldValue() == field2.getFieldValue()) {
+                if (field1.equals(field2)) {
                     return false;
                 }
             }
