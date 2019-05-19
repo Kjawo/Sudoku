@@ -3,7 +3,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class SudokuField {
+import java.io.Serializable;
+
+public class SudokuField implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
 
     private int value;
 
