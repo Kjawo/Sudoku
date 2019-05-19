@@ -32,4 +32,29 @@ public class SudokuFieldTest {
         SudokuField f1 = new SudokuField(2);
         Assert.assertEquals(f1.toString(), "2");
     }
+
+    @Test
+    public void comparableTest() {
+        SudokuField f1 = new SudokuField(2);
+        SudokuField f2 = new SudokuField(2);
+        Assert.assertEquals(f1.compareTo(f2), 0);
+        f2.setFieldValue(3);
+        Assert.assertEquals(f1.compareTo(f2), -1);
+        f2.setFieldValue(1);
+        Assert.assertEquals(f1.compareTo(f2), 1);
+    }
+
+    @Test
+    public void cloneableTest() {
+        SudokuField f1 = new SudokuField(2);
+
+        SudokuField f2 = null;
+        try {
+            f2 = f1.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        Assert.assertEquals(f1.compareTo(f2), 0);
+
+    }
 }
