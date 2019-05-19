@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class SudokuBoard implements Serializable {
+public class SudokuBoard implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 1L;
 
@@ -110,6 +110,10 @@ public class SudokuBoard implements Serializable {
         board = createEmptyBoard();
     }
 
+    SudokuBoard(List<List<SudokuField>> _board) {
+        board = _board;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
@@ -139,5 +143,10 @@ public class SudokuBoard implements Serializable {
         return new HashCodeBuilder(17, 37)
                 .append(board)
                 .toHashCode();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new SudokuBoard(board);
     }
 }

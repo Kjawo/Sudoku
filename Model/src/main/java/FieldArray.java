@@ -7,6 +7,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 class FieldArray {
 
+    public List<SudokuField> getSudokuFields() {
+        return sudokuFields;
+    }
+
     private List<SudokuField> sudokuFields;
 
     FieldArray(final List<SudokuField> fields) {

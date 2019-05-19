@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
-public class SudokuField implements Serializable {
+public class SudokuField implements Serializable, Comparable<SudokuField>, Cloneable{
 
     private static final long serialVersionUID = 1L;
 
@@ -57,5 +57,15 @@ public class SudokuField implements Serializable {
         return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
                 .append("Value", value)
                 .toString();
+    }
+
+    @Override
+    public int compareTo(SudokuField sudokuField) {
+        return Integer.compare(this.value, sudokuField.getFieldValue());
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new SudokuField(value);
     }
 }
