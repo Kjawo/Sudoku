@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -148,5 +149,19 @@ public class SudokuBoard implements Serializable, Cloneable {
     @Override
     protected SudokuBoard clone() throws CloneNotSupportedException {
         return new SudokuBoard(board);
+    }
+
+    private void hideField(int x, int y) {
+        set(x, y, 0);
+    }
+
+    public void adjustToLevel(Level lvl) {
+        for(int i = 0; i < lvl.getNumberOfFieldsToRemove(); i++) {
+            int randomX = ThreadLocalRandom.current().nextInt(0, 9);
+            int randomY = ThreadLocalRandom.current().nextInt(0, 9);
+            if(get(randomX, randomY) != 0) {
+                set(randomX, randomY, 0);
+            }
+        }
     }
 }
