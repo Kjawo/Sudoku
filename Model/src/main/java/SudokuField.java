@@ -65,7 +65,7 @@ public class SudokuField implements Serializable, Comparable<SudokuField>, Clone
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected SudokuField clone() throws CloneNotSupportedException {
         return new SudokuField(value);
     }
 }

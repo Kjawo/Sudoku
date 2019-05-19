@@ -7,7 +7,7 @@ class SudokuRow extends FieldArray implements Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected SudokuRow clone() throws CloneNotSupportedException {
         return new SudokuRow(getSudokuFields());
     }
 }

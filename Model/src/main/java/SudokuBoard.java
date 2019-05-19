@@ -146,7 +146,7 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected SudokuBoard clone() throws CloneNotSupportedException {
         return new SudokuBoard(board);
     }
 }
