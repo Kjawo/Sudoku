@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+import java.util.ListResourceBundle;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -43,4 +46,5 @@ public class ChoiceWindowController {
     public void langAction(ActionEvent actionEvent) {
         Locale.setDefault(Locale.forLanguageTag("pl"));
     }
+
 }
