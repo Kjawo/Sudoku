@@ -3,17 +3,19 @@ public enum Difficult {
     medium("medium"),
     easy("easy");
     private final Level level;
+    int number;
     Difficult(String lvl) {
         if(lvl == "hard") {
-            level = new Level(70);
+            number = 70;
         }
         if(lvl == "medium") {
-            level = new Level(50);
+            number = 50;
         }
         if(lvl == "easy") {
-            level = new Level(30);
+            number = 30;
         }
         else throw new IllegalArgumentException("Wrong argument");
+        level = new Level(number);
     }
     public Level getLvl(){
         return level;

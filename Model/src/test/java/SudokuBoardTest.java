@@ -194,7 +194,6 @@ public class SudokuBoardTest {
             }
         }
 
-
         SudokuBoard board2 = null;
         try {
             board2 = instance.clone();
