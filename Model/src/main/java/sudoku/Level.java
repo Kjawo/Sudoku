@@ -1,3 +1,5 @@
+package sudoku;
+
 public class Level {
     private final int numberOfFieldsToRemove;
     Level(int number) {

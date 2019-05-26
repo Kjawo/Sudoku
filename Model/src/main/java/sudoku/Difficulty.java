@@ -1,10 +1,12 @@
-public enum Difficult {
+package sudoku;
+
+public enum Difficulty {
     hard("hard"),
     medium("medium"),
     easy("easy");
-    private final Level level;
+    public final Level level;
     int number;
-    Difficult(String lvl) {
+    Difficulty(String lvl) {
         if(lvl == "hard") {
             number = 70;
         }

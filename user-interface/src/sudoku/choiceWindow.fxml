@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -10,20 +14,20 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="TOP_CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<GridPane alignment="TOP_CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sudoku.ChoiceWindowController">
    <children>
       <Accordion GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label alignment="TOP_CENTER" text="Choose level of difficult" GridPane.rowIndex="1">
+      <Label fx:id="levelChoice" alignment="TOP_CENTER" text="Choose level of difficult" GridPane.rowIndex="1">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" mnemonicParsing="false" text="Play" translateX="100.0" GridPane.rowIndex="17">
+      <Button fx:id="Play" alignment="CENTER" mnemonicParsing="false" onAction="#PlayAction" text="Play" translateX="100.0" GridPane.rowIndex="17">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <RadioButton mnemonicParsing="false" selected="true" text="Easy" GridPane.rowIndex="7">
+      <RadioButton mnemonicParsing="false" selected="true" text="Easy" GridPane.rowIndex="7" userData="easy">
          <toggleGroup>
             <ToggleGroup fx:id="radio_group" />
          </toggleGroup>
@@ -31,12 +35,12 @@
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton mnemonicParsing="false" text="Medium" toggleGroup="$radio_group" GridPane.rowIndex="11">
+      <RadioButton mnemonicParsing="false" text="Medium" toggleGroup="$radio_group" GridPane.rowIndex="11" userData="medium">
          <font>
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton mnemonicParsing="false" text="Hard" toggleGroup="$radio_group" GridPane.rowIndex="14">
+      <RadioButton mnemonicParsing="false" text="Hard" toggleGroup="$radio_group" GridPane.rowIndex="14" userData="hard">
          <font>
             <Font size="20.0" />
          </font>
@@ -48,6 +52,7 @@
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
+      <RowConstraints />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />

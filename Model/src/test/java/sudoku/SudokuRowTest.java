@@ -1,11 +1,15 @@
+package sudoku;
+
 import org.junit.Test;
+import sudoku.SudokuField;
+import sudoku.SudokuRow;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class SudokuColumnTest {
+public class SudokuRowTest {
 
     @Test
     public void cloneableTest() {
@@ -15,14 +19,15 @@ public class SudokuColumnTest {
             sudokuFields.set(i, new SudokuField(i+1));
         }
 
-        SudokuColumn f1 = new SudokuColumn(sudokuFields);
+        SudokuRow f1 = new SudokuRow(sudokuFields);
 
-        SudokuColumn f2 = null;
+        SudokuRow f2 = null;
         try {
             f2 = f1.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+
         assertEquals(f1, f2);
 
     }
