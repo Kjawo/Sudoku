@@ -41,6 +41,6 @@ public class ChoiceWindowController {
     }
 
     public void langAction(ActionEvent actionEvent) {
-        Locale.setDefault(Locale.forLanguageTag("en"));
+        Locale.setDefault(Locale.forLanguageTag("pl"));
     }
 }

@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        Locale.setDefault(Locale.forLanguageTag("en"));
+        Locale.setDefault(Locale.forLanguageTag("en"));
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
         Parent root = FXMLLoader.load(getClass().getResource("choiceWindow.fxml"), bundle);
 
