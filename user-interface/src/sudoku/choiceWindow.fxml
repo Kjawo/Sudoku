@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -13,8 +14,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
 
-<GridPane alignment="TOP_CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sudoku.ChoiceWindowController">
+<GridPane alignment="TOP_CENTER" hgap="10" prefHeight="450.0" prefWidth="554.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sudoku.ChoiceWindowController">
    <children>
       <Accordion GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label fx:id="levelChoice" alignment="TOP_CENTER" text="%choose_level" GridPane.rowIndex="1">
@@ -22,7 +24,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="Play" alignment="CENTER" mnemonicParsing="false" onAction="#PlayAction" text="%play" translateX="100.0" GridPane.rowIndex="17">
+      <Button fx:id="Play" alignment="CENTER" mnemonicParsing="false" onAction="#PlayAction" text="%play" GridPane.rowIndex="20">
          <font>
             <Font size="25.0" />
          </font>
@@ -45,13 +47,27 @@
             <Font size="20.0" />
          </font>
       </RadioButton>
+      <ComboBox prefWidth="150.0" GridPane.rowIndex="18" onAction="#langAction">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Polski" />
+               <String fx:value="English" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Label prefHeight="29.0" prefWidth="150.0" text="%choose_language" GridPane.rowIndex="17" />
    </children>
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
       <ColumnConstraints />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />

@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ChoiceWindowController {
@@ -37,5 +38,9 @@ public class ChoiceWindowController {
             e.printStackTrace();
         }
 
+    }
+
+    public void langAction(ActionEvent actionEvent) {
+        Locale.setDefault(Locale.forLanguageTag("en"));
     }
 }
