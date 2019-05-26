@@ -47,14 +47,15 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
-      <SplitPane layoutX="237.0" layoutY="635.0" orientation="VERTICAL" prefHeight="45.0" prefWidth="87.0">
-         <items>
-            <Button fx:id="buttonCheck" mnemonicParsing="false" onAction="#onActionButtonCheck" prefHeight="48.0" prefWidth="95.0" text="Check">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </items>
-      </SplitPane>
+      <Button fx:id="buttonCheck" layoutX="165.0" layoutY="642.0" mnemonicParsing="false" onAction="#onActionButtonCheck" prefHeight="48.0" prefWidth="134.0" text="%check">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonSave" layoutX="310.0" layoutY="642.0" mnemonicParsing="false" onAction="#onActionButtonSave" prefHeight="48.0" prefWidth="95.0" text="%save">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

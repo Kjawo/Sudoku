@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+import java.util.ResourceBundle;
+
 public class ChoiceWindowController {
 
 
@@ -23,7 +25,8 @@ public class ChoiceWindowController {
     public void PlayAction(ActionEvent actionEvent) {
         try {
             difficulty = radio_group.getSelectedToggle().getUserData().toString();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameBoard.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameBoard.fxml"), bundle);
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));

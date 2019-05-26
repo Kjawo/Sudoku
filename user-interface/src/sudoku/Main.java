@@ -6,12 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("choiceWindow.fxml"));
-        primaryStage.setTitle("Hello World");
+//        Locale.setDefault(Locale.forLanguageTag("en"));
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
+        Parent root = FXMLLoader.load(getClass().getResource("choiceWindow.fxml"), bundle);
+
+        primaryStage.setTitle(bundle.getString("tittle"));
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }

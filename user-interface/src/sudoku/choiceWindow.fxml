@@ -17,17 +17,17 @@
 <GridPane alignment="TOP_CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sudoku.ChoiceWindowController">
    <children>
       <Accordion GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label fx:id="levelChoice" alignment="TOP_CENTER" text="Choose level of difficult" GridPane.rowIndex="1">
+      <Label fx:id="levelChoice" alignment="TOP_CENTER" text="%choose_level" GridPane.rowIndex="1">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="Play" alignment="CENTER" mnemonicParsing="false" onAction="#PlayAction" text="Play" translateX="100.0" GridPane.rowIndex="17">
+      <Button fx:id="Play" alignment="CENTER" mnemonicParsing="false" onAction="#PlayAction" text="%play" translateX="100.0" GridPane.rowIndex="17">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <RadioButton mnemonicParsing="false" selected="true" text="Easy" GridPane.rowIndex="7" userData="easy">
+      <RadioButton mnemonicParsing="false" selected="true" text="%easy" userData="easy" GridPane.rowIndex="7">
          <toggleGroup>
             <ToggleGroup fx:id="radio_group" />
          </toggleGroup>
@@ -35,12 +35,12 @@
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton mnemonicParsing="false" text="Medium" toggleGroup="$radio_group" GridPane.rowIndex="11" userData="medium">
+      <RadioButton mnemonicParsing="false" text="%medium" toggleGroup="$radio_group" userData="medium" GridPane.rowIndex="11">
          <font>
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton mnemonicParsing="false" text="Hard" toggleGroup="$radio_group" GridPane.rowIndex="14" userData="hard">
+      <RadioButton mnemonicParsing="false" text="%hard" toggleGroup="$radio_group" userData="hard" GridPane.rowIndex="14">
          <font>
             <Font size="20.0" />
          </font>
