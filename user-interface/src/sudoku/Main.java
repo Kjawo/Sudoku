@@ -20,6 +20,7 @@ public class Main extends Application {
 
         primaryStage.setTitle(bundle.getString("tittle"));
         primaryStage.setScene(new Scene(root, 600, 400));
+
         Authors auth = new Authors();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Authors");

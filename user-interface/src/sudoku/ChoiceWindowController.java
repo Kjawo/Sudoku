@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
@@ -19,6 +20,7 @@ public class ChoiceWindowController {
 
 
     public ToggleGroup radio_group;
+    public ComboBox comboBoxLang;
 
     private String difficulty = "easy";
 
@@ -44,7 +46,13 @@ public class ChoiceWindowController {
     }
 
     public void langAction(ActionEvent actionEvent) {
-        Locale.setDefault(Locale.forLanguageTag("pl"));
+
+        System.out.println(comboBoxLang.getValue().toString());
+        if(comboBoxLang.getValue().toString().equals("English")) {
+            Locale.setDefault(Locale.forLanguageTag("en"));
+        } else if(comboBoxLang.getValue().toString().equals("Polski")) {
+            Locale.setDefault(Locale.forLanguageTag("pl"));
+        }
     }
 
 }
