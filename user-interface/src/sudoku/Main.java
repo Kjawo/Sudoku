@@ -20,11 +20,11 @@ public class Main extends Application {
 
         primaryStage.setTitle(bundle.getString("tittle"));
         primaryStage.setScene(new Scene(root, 600, 400));
-        Authors auth = new Authors();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Authors");
-        alert.setContentText("" + auth.getString("author1" + "\n" + auth.getString("author2")));
-        alert.show();
+//        Authors auth = new Authors();
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Authors");
+//        alert.setContentText("" + auth.getString("author1" + "\n" + auth.getString("author2")));
+//        alert.show();
         primaryStage.show();
 
     }
