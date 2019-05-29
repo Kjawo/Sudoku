@@ -1,8 +1,10 @@
 package sudoku;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -26,11 +28,13 @@ public class GameBoardController {
 
     @FXML
     private GridPane sudokuBoardGrid;
+    TextField[][] textFields = new TextField[9][9];
+
 
     private SudokuBoard sudokuBoard = new SudokuBoard();
     private SudokuBoard sudokuBoardCopy = new SudokuBoard();
     private BacktrackingSudokuSolver solver = new BacktrackingSudokuSolver();
-//    Difficulty difficulty = easy;
+    Difficulty difficulty = easy;
     private FileSudokuBoardDao fileSudokuBoardDao;
     private FileChooser fileChooser;
 
@@ -40,8 +44,8 @@ public class GameBoardController {
         sudokuBoardCopy = (SudokuBoard) sudokuBoard.clone();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("choiceWindow.fxml"));
         ChoiceWindowController choiceWindowController = fxmlLoader.getController();
-//        String difficulty = choiceWindowController.getDifficulty();
-        sudokuBoard.adjustToLevel(new Level(5));
+//        difficulty = choiceWindowController.getDifficulty();
+        sudokuBoard.adjustToLevel(easy);
 //        difficultyLevel.chooseLevel(sudokuBoard, ChoiceWindowController);
 
         for (int i = 0; i < 9; i++) {
@@ -54,23 +58,39 @@ public class GameBoardController {
                     textField.setText(String.valueOf(sudokuBoard.get(i, j)));
                 }
                 sudokuBoardGrid.add(textField, i, j);
+                textFields[i][j] = textField;
             }
         }
     }
-    public void onActionButtonCheck(ActionEvent actionEvent) {
-        String popUpText;
-        if (sudokuBoard.checkBoard(true)) {
-            popUpText = "You win";
-        } else {
-            popUpText = "You loose";
+
+    private void textFieldBoardToInstance() {
+        ObservableList<Node> children = sudokuBoardGrid.getChildren();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                sudokuBoard.set(i, j, Integer.parseInt(textFields[i][j].getText()));
+            }
         }
-        final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text(popUpText));
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
-        dialog.setScene(dialogScene);
-        dialog.show();
+    }
+
+    public void onActionButtonCheck(ActionEvent actionEvent) {
+        try {
+            textFieldBoardToInstance();
+            String popUpText;
+            if (sudokuBoard.checkBoard(true)) {
+                popUpText = "You win";
+            } else {
+                popUpText = "You loose";
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Authors");
+            alert.setContentText(popUpText);
+            alert.show();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Authors");
+            alert.setContentText("Invalid input");
+            alert.show();
+        }
     }
 
     public void onActionButtonSave(ActionEvent actionEvent) {

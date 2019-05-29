@@ -157,8 +157,8 @@ public class SudokuBoard implements Serializable, Cloneable {
         set(x, y, 0);
     }
 
-    public void adjustToLevel(Level lvl) {
-        for(int i = 0; i < lvl.getNumberOfFieldsToRemove(); i++) {
+    public void adjustToLevel(Difficulty diff) {
+        for(int i = 0; i < diff.numberOfFieldsToRemove; i++) {
             int randomX = ThreadLocalRandom.current().nextInt(0, 9);
             int randomY = ThreadLocalRandom.current().nextInt(0, 9);
             if(get(randomX, randomY) != 0) {

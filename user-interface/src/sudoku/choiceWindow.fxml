@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.*?>
 <?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -14,22 +17,20 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.collections.FXCollections?>
 
 <GridPane alignment="TOP_CENTER" hgap="10" prefHeight="450.0" prefWidth="554.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sudoku.ChoiceWindowController">
    <children>
-      <Accordion GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label fx:id="levelChoice" alignment="TOP_CENTER" text="%choose_level" GridPane.rowIndex="1">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="Play" alignment="CENTER" mnemonicParsing="false" onAction="#PlayAction" text="%play" GridPane.rowIndex="20">
+      <Button fx:id="Play" alignment="CENTER" mnemonicParsing="false" onAction="#PlayAction" text="%play" GridPane.halignment="CENTER" GridPane.rowIndex="20">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <RadioButton mnemonicParsing="false" selected="true" text="%easy" userData="easy" GridPane.rowIndex="7">
+      <RadioButton fx:id="easy" mnemonicParsing="false" selected="true" text="%easy" GridPane.rowIndex="7">
          <toggleGroup>
             <ToggleGroup fx:id="radio_group" />
          </toggleGroup>
@@ -37,17 +38,17 @@
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton mnemonicParsing="false" text="%medium" toggleGroup="$radio_group" userData="medium" GridPane.rowIndex="11">
+      <RadioButton fx:id="medium" mnemonicParsing="false" text="%medium" toggleGroup="$radio_group" userData="medium" GridPane.rowIndex="11">
          <font>
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton mnemonicParsing="false" text="%hard" toggleGroup="$radio_group" userData="hard" GridPane.rowIndex="14">
+      <RadioButton fx:id="hard" mnemonicParsing="false" text="%hard" toggleGroup="$radio_group" userData="hard" GridPane.rowIndex="14">
          <font>
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <ComboBox fx:id="comboBoxLang" prefWidth="150.0" GridPane.rowIndex="18" onAction="#langAction">
+      <ComboBox fx:id="comboBoxLang" onAction="#langAction" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="18">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="Polski" />
@@ -55,7 +56,8 @@
             </FXCollections>
          </items>
       </ComboBox>
-      <Label prefHeight="29.0" prefWidth="150.0" text="%choose_language" GridPane.rowIndex="17" />
+      <Label prefHeight="29.0" prefWidth="150.0" text="%choose_language" GridPane.halignment="CENTER" GridPane.rowIndex="17" />
+      <Button mnemonicParsing="false" text="%show_authors" onAction="#showAuthors" GridPane.halignment="CENTER" GridPane.rowIndex="23" />
    </children>
    <columnConstraints>
       <ColumnConstraints />
@@ -86,6 +88,7 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints maxHeight="48.0" minHeight="28.0" prefHeight="28.0" />
       <RowConstraints maxHeight="48.0" minHeight="28.0" prefHeight="28.0" />
       <RowConstraints maxHeight="26.0" minHeight="6.0" prefHeight="26.0" />
    </rowConstraints>
