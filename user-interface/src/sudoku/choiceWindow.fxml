@@ -57,7 +57,8 @@
          </items>
       </ComboBox>
       <Label prefHeight="29.0" prefWidth="150.0" text="%choose_language" GridPane.halignment="CENTER" GridPane.rowIndex="17" />
-      <Button mnemonicParsing="false" text="%show_authors" onAction="#showAuthors" GridPane.halignment="CENTER" GridPane.rowIndex="23" />
+      <Button mnemonicParsing="false" onAction="#showAuthors" text="%show_authors" GridPane.halignment="CENTER" GridPane.rowIndex="23" />
+<!--      <Button alignment="CENTER" mnemonicParsing="false" text="%load" GridPane.halignment="CENTER" GridPane.rowIndex="21" />-->
    </children>
    <columnConstraints>
       <ColumnConstraints />
@@ -66,6 +67,7 @@
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
+      <RowConstraints />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />

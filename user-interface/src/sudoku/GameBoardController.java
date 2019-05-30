@@ -26,6 +26,7 @@ import static sudoku.Difficulty.*;
 
 public class GameBoardController {
 
+
     @FXML
     private GridPane sudokuBoardGrid;
     TextField[][] textFields = new TextField[9][9];
@@ -34,19 +35,16 @@ public class GameBoardController {
     private SudokuBoard sudokuBoard = new SudokuBoard();
     private SudokuBoard sudokuBoardCopy = new SudokuBoard();
     private BacktrackingSudokuSolver solver = new BacktrackingSudokuSolver();
-    Difficulty difficulty = easy;
     private FileSudokuBoardDao fileSudokuBoardDao;
     private FileChooser fileChooser;
+
+    private Difficulty difficulty;
 
     @FXML
     private void initialize() throws CloneNotSupportedException {
         solver.solve(sudokuBoard);
-        sudokuBoardCopy = (SudokuBoard) sudokuBoard.clone();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("choiceWindow.fxml"));
-        ChoiceWindowController choiceWindowController = fxmlLoader.getController();
-//        difficulty = choiceWindowController.getDifficulty();
-        sudokuBoard.adjustToLevel(easy);
-//        difficultyLevel.chooseLevel(sudokuBoard, ChoiceWindowController);
+        difficulty = ChoiceWindowController.getDifficulty();
+        sudokuBoard.adjustToLevel(difficulty);
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {

@@ -7,10 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 import java.util.List;
-import java.util.ListResourceBundle;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -20,9 +17,9 @@ public class ChoiceWindowController {
     public ToggleGroup radio_group;
     public ComboBox comboBoxLang;
 
-    private Difficulty difficulty;
+    private static Difficulty difficulty;
 
-    public Difficulty getDifficulty() {
+    public static Difficulty getDifficulty() {
         return difficulty;
     }
 
@@ -35,15 +32,18 @@ public class ChoiceWindowController {
             toggles.get(2).setUserData(Difficulty.hard);
 
             difficulty = (Difficulty) radio_group.getSelectedToggle().getUserData();
+
             System.out.println(radio_group.getSelectedToggle().getUserData());
 
             ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameBoard.fxml"), bundle);
-            Parent root1 = (Parent) fxmlLoader.load();
+
+            Parent root1 = fxmlLoader.load();
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.sizeToScene();
+
             stage.show();
 
         } catch(Exception e) {
