@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -18,6 +20,12 @@ public class ChoiceWindowController {
     public ComboBox comboBoxLang;
 
     private static Difficulty difficulty;
+
+    public static SudokuBoard getLoadedSudokuBoard() {
+        return loadedSudokuBoard;
+    }
+
+    private static SudokuBoard loadedSudokuBoard;
 
     public static Difficulty getDifficulty() {
         return difficulty;
@@ -68,5 +76,16 @@ public class ChoiceWindowController {
         alert.setTitle("Authors");
         alert.setContentText("" + auth.getString("author1") + "\n" + auth.getString("author2"));
         alert.show();
+    }
+
+    public void loadButton(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        try {
+            File file = fileChooser.showOpenDialog(null);
+            FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file.getName());
+            loadedSudokuBoard = fileSudokuBoardDao.read();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

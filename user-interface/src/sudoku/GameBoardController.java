@@ -32,8 +32,7 @@ public class GameBoardController {
     TextField[][] textFields = new TextField[9][9];
 
 
-    private SudokuBoard sudokuBoard = new SudokuBoard();
-    private SudokuBoard sudokuBoardCopy = new SudokuBoard();
+    private SudokuBoard sudokuBoard;
     private BacktrackingSudokuSolver solver = new BacktrackingSudokuSolver();
     private FileSudokuBoardDao fileSudokuBoardDao;
     private FileChooser fileChooser;
@@ -42,30 +41,57 @@ public class GameBoardController {
 
     @FXML
     private void initialize() throws CloneNotSupportedException {
-        solver.solve(sudokuBoard);
-        difficulty = ChoiceWindowController.getDifficulty();
-        sudokuBoard.adjustToLevel(difficulty);
-
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                TextField textField = new TextField();
-                textField.setMinSize(50, 50);
-                textField.setFont(Font.font(18));
-                if (sudokuBoard.get(i, j) != 0) {
-                    textField.setDisable(true);
-                    textField.setText(String.valueOf(sudokuBoard.get(i, j)));
+        if(ChoiceWindowController.getLoadedSudokuBoard() == null) {
+            sudokuBoard = new SudokuBoard();
+            solver.solve(sudokuBoard);
+            difficulty = ChoiceWindowController.getDifficulty();
+            sudokuBoard.adjustToLevel(difficulty);
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    TextField textField = new TextField();
+                    textField.setMinSize(50, 50);
+                    textField.setFont(Font.font(18));
+                    if (sudokuBoard.get(i, j) != 0) {
+                        sudokuBoard.makeNotEditable(i, j);
+                        textField.setDisable(true);
+                        textField.setText(String.valueOf(sudokuBoard.get(i, j)));
+                    }
+                    sudokuBoardGrid.add(textField, i, j);
+                    textFields[i][j] = textField;
                 }
-                sudokuBoardGrid.add(textField, i, j);
-                textFields[i][j] = textField;
+            }
+        } else {
+            sudokuBoard = ChoiceWindowController.getLoadedSudokuBoard();
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    TextField textField = new TextField();
+                    textField.setMinSize(50, 50);
+                    textField.setFont(Font.font(18));
+                    if (sudokuBoard.get(i, j) != 0) {
+                        if(!sudokuBoard.getIsEditable(i, j)) {
+                            textField.setDisable(true);
+                        }
+                        textField.setText(String.valueOf(sudokuBoard.get(i, j)));
+                    }
+                    sudokuBoardGrid.add(textField, i, j);
+                    textFields[i][j] = textField;
+                }
             }
         }
+
+
+
     }
 
     private void textFieldBoardToInstance() {
         ObservableList<Node> children = sudokuBoardGrid.getChildren();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                sudokuBoard.set(i, j, Integer.parseInt(textFields[i][j].getText()));
+                if(textFields[i][j].getText().equals("")) {
+                    sudokuBoard.set(i, j, 0);
+                } else {
+                    sudokuBoard.set(i, j, Integer.parseInt(textFields[i][j].getText()));
+                }
             }
         }
     }
@@ -74,7 +100,7 @@ public class GameBoardController {
         try {
             textFieldBoardToInstance();
             String popUpText;
-            if (sudokuBoard.checkBoard(true)) {
+            if (sudokuBoard.checkBoard(false)) {
                 popUpText = "You win";
             } else {
                 popUpText = "You loose";
@@ -94,6 +120,7 @@ public class GameBoardController {
     public void onActionButtonSave(ActionEvent actionEvent) {
         fileChooser = new FileChooser();
         try {
+            textFieldBoardToInstance();
             File file = fileChooser.showSaveDialog(null);
             fileSudokuBoardDao = new FileSudokuBoardDao(file.getName());
             fileSudokuBoardDao.write(sudokuBoard);

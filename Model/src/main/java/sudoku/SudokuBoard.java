@@ -27,6 +27,16 @@ public class SudokuBoard implements Serializable, Cloneable {
         return boardCopy;
     }
 
+    public Boolean getIsEditable(int i, int j) {
+        return isEditable[i][j];
+    }
+
+    private Boolean[][] isEditable = new Boolean[9][9];
+
+    public void makeNotEditable(int i, int j) {
+        isEditable[i][j] = Boolean.FALSE;
+    }
+
     public boolean checkBoard(boolean considerZeroes) {
         for (int i = 0; i < 9; i++) {
                 if (!getRow(i).verify(considerZeroes) || !getColumn(i).verify(considerZeroes)) {
@@ -111,10 +121,20 @@ public class SudokuBoard implements Serializable, Cloneable {
 
     SudokuBoard() {
         board = createEmptyBoard();
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                isEditable[i][j] = true;
+            }
+        }
     }
 
     SudokuBoard(List<List<SudokuField>> _board) {
         board = _board;
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                isEditable[i][j] = true;
+            }
+        }
     }
 
     @Override
