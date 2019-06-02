@@ -43,7 +43,7 @@ public class ChoiceWindowController {
 
             System.out.println(radio_group.getSelectedToggle().getUserData());
 
-            ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
+            ResourceBundle bundle = ResourceBundle.getBundle("messages");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameBoard.fxml"), bundle);
 
             Parent root1 = fxmlLoader.load();
@@ -60,13 +60,25 @@ public class ChoiceWindowController {
 
     }
 
-    public void langAction(ActionEvent actionEvent) {
+    public void langAction(ActionEvent actionEvent) throws Exception {
 
         System.out.println(comboBoxLang.getValue().toString());
-        if(comboBoxLang.getValue().toString().equals("English")) {
-            Locale.setDefault(Locale.forLanguageTag("en"));
-        } else if(comboBoxLang.getValue().toString().equals("Polski")) {
-            Locale.setDefault(Locale.forLanguageTag("pl"));
+        if (comboBoxLang.getValue().toString().equals("English")) {
+            if (!Main.getLocale().toString().equals("en")) {
+                Main.setLocale(new Locale("en")); // change to english
+                Main.stage.close();
+                Main reload = new Main();
+                reload.reload();
+            }
+
+
+        } else if (comboBoxLang.getValue().toString().equals("Polski")) {
+            if (!Main.getLocale().toString().equals("pl")) {
+                Main.setLocale(new Locale("pl")); // change to polish
+                Main.stage.close();
+                Main reload = new Main();
+                reload.reload();
+            }
         }
     }
 
