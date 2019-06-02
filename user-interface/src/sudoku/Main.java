@@ -7,12 +7,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class Main extends Application {
+
+    public static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     private Scene scene;
     public static Stage stage;
@@ -59,4 +65,5 @@ public class Main extends Application {
     public static Locale getLocale() {
         return locale;
     }
+
 }

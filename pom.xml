@@ -16,7 +16,9 @@
 
     <name>${project.artifactId}</name>
 
+
     <dependencyManagement>
+
         <dependencies>
             <dependency>
                 <groupId>junit</groupId>
@@ -30,6 +32,7 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.9</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -5,15 +5,21 @@ import java.util.List;
 import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 
 public class SudokuBoard implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final Logger logger = LoggerFactory.getLogger(SudokuBoard.class);
 
     private List<List<SudokuField>> board;
 

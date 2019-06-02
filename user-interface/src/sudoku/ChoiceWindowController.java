@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+
 public class ChoiceWindowController {
 
 
@@ -41,9 +42,11 @@ public class ChoiceWindowController {
 
             difficulty = (Difficulty) radio_group.getSelectedToggle().getUserData();
 
-            System.out.println(radio_group.getSelectedToggle().getUserData());
+            //System.out.println(radio_group.getSelectedToggle().getUserData());
 
-            ResourceBundle bundle = ResourceBundle.getBundle("messages");
+            Main.logger.info("Difficulty level changed to: ".concat(radio_group.getSelectedToggle().getUserData().toString()));
+
+            ResourceBundle bundle = ResourceBundle.getBundle("messages", Main.getLocale());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameBoard.fxml"), bundle);
 
             Parent root1 = fxmlLoader.load();
@@ -62,7 +65,10 @@ public class ChoiceWindowController {
 
     public void langAction(ActionEvent actionEvent) throws Exception {
 
-        System.out.println(comboBoxLang.getValue().toString());
+        //System.out.println(comboBoxLang.getValue().toString());
+
+        Main.logger.info("Language changed to: ".concat(comboBoxLang.getValue().toString()));
+
         if (comboBoxLang.getValue().toString().equals("English")) {
             if (!Main.getLocale().toString().equals("en")) {
                 Main.setLocale(new Locale("en")); // change to english
@@ -84,8 +90,10 @@ public class ChoiceWindowController {
 
     public void showAuthors(ActionEvent actionEvent) {
         Authors auth = new Authors();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Authors");
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", Main.getLocale());
+        ButtonType applyButton = new ButtonType(bundle.getString("apply"), ButtonBar.ButtonData.APPLY);
+        Alert alert = new Alert(Alert.AlertType.NONE, "", applyButton);
+        alert.setTitle(bundle.getString("authors"));
         alert.setContentText("" + auth.getString("author1") + "\n" + auth.getString("author2"));
         alert.show();
     }

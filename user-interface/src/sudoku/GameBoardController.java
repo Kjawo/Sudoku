@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -21,6 +23,7 @@ import javafx.stage.Stage;
 import org.apache.commons.lang3.builder.Diff;
 
 import java.io.File;
+import java.util.ResourceBundle;
 
 import static sudoku.Difficulty.*;
 
@@ -73,6 +76,7 @@ public class GameBoardController {
                         }
                         textField.setText(String.valueOf(sudokuBoard.get(i, j)));
                     }
+                   // else textField.setText("");
                     sudokuBoardGrid.add(textField, i, j);
                     textFields[i][j] = textField;
                 }
@@ -87,7 +91,7 @@ public class GameBoardController {
         ObservableList<Node> children = sudokuBoardGrid.getChildren();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if(textFields[i][j].getText().equals("")) {
+                if(textFields[i][j].getText() == null) {
                     sudokuBoard.set(i, j, 0);
                 } else {
                     sudokuBoard.set(i, j, Integer.parseInt(textFields[i][j].getText()));
@@ -100,19 +104,26 @@ public class GameBoardController {
         try {
             textFieldBoardToInstance();
             String popUpText;
-            if (sudokuBoard.checkBoard(false)) {
-                popUpText = "You win";
+            ResourceBundle bundle = ResourceBundle.getBundle("messages", Main.getLocale());
+            if (sudokuBoard.checkBoard(true)) {
+                popUpText = bundle.getString("win");
+                Main.logger.info("Player won");
             } else {
-                popUpText = "You loose";
+                popUpText = bundle.getString("loss");
+                Main.logger.info("Player lost");
             }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Authors");
+            ButtonType applyButton = new ButtonType(bundle.getString("apply"), ButtonBar.ButtonData.APPLY);
+            Alert alert = new Alert(Alert.AlertType.NONE, "", applyButton);
+            alert.setTitle(bundle.getString("info"));
             alert.setContentText(popUpText);
             alert.show();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Authors");
-            alert.setContentText("Invalid input");
+            ResourceBundle bundle = ResourceBundle.getBundle("messages", Main.getLocale());
+            ButtonType applyButton = new ButtonType(bundle.getString("apply"), ButtonBar.ButtonData.APPLY);
+            Alert alert = new Alert(Alert.AlertType.NONE, "", applyButton);
+            alert.setTitle(bundle.getString("info"));
+            alert.setContentText(bundle.getString("invalid"));
+            Main.logger.info("Invalid input");
             alert.show();
         }
     }
