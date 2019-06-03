@@ -111,10 +111,14 @@ public class GameBoardController {
     }
 
     public void onActionButtonCheck(ActionEvent actionEvent) {
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", Main.getLocale());
+        ButtonType applyButton = new ButtonType(bundle.getString("apply"), ButtonBar.ButtonData.APPLY);
+        Alert alert = new Alert(Alert.AlertType.NONE, "", applyButton);
+        alert.setTitle(bundle.getString("info"));
         try {
             textFieldBoardToInstance();
             String popUpText;
-            ResourceBundle bundle = ResourceBundle.getBundle("messages", Main.getLocale());
+
             if (sudokuBoard.checkBoard(true)) {
                 popUpText = bundle.getString("win");
                 Main.logger.info("Player won");
@@ -122,15 +126,10 @@ public class GameBoardController {
                 popUpText = bundle.getString("loss");
                 Main.logger.info("Player lost");
             }
-            ButtonType applyButton = new ButtonType(bundle.getString("apply"), ButtonBar.ButtonData.APPLY);
-            Alert alert = new Alert(Alert.AlertType.NONE, "", applyButton);
-            alert.setTitle(bundle.getString("info"));
+
             alert.setContentText(popUpText);
             alert.show();
         } catch (Exception e) {
-            ResourceBundle bundle = ResourceBundle.getBundle("messages", Main.getLocale());
-            ButtonType applyButton = new ButtonType(bundle.getString("apply"), ButtonBar.ButtonData.APPLY);
-            Alert alert = new Alert(Alert.AlertType.NONE, "", applyButton);
             alert.setTitle(bundle.getString("info"));
             alert.setContentText(bundle.getString("invalid"));
             Main.logger.info("Invalid input");
