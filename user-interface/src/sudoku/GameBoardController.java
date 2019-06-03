@@ -43,7 +43,7 @@ public class GameBoardController {
     private Difficulty difficulty;
 
     @FXML
-    private void initialize() throws CloneNotSupportedException {
+    private void initialize() throws CloneNotSupportedException, EmptyBoardException {
         if(ChoiceWindowController.getLoadedSudokuBoard() == null) {
             sudokuBoard = new SudokuBoard();
             solver.solve(sudokuBoard);
@@ -83,6 +83,16 @@ public class GameBoardController {
             }
         }
 
+        int counter = 0;
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                if(textFields[i][j].equals(null)) {
+                    counter++;
+                }
+                else break;
+            }
+        }
+        if(counter == 81) throw new EmptyBoardException("Sudoku Board is empty");
 
 
     }

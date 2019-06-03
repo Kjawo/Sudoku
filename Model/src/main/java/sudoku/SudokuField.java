@@ -27,7 +27,9 @@ public class SudokuField implements Serializable, Comparable<SudokuField>, Clone
     }
 
     public void setFieldValue(final int value) {
+
         this.value = value;
+        if(value < 0 || value > 9) throw new BadFieldValueException("Value is incorrect");
     }
 
     @Override

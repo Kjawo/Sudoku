@@ -21,6 +21,8 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
             SudokuBoard.logger.error("Error initializing stream");
             e.printStackTrace();
         }
+
+        throw new FileOperationException(new FileNotFoundException());
     }
 
     public SudokuBoard read() {
@@ -41,7 +43,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
             e.printStackTrace();
         }
 
-       throw new RuntimeException("Error reading from file");
+        throw new FileOperationException(new FileNotFoundException());
        // return null;
     }
 
