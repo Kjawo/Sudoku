@@ -24,7 +24,7 @@ public class FieldArrayTest {
             sf.get(i).setFieldValue(i);
         }
         FieldArray fa = new FieldArray(sf);
-        assertEquals(true, fa.verify(true));
+        assertTrue(fa.verify(false));
     }
 
     @Test

@@ -24,12 +24,16 @@ class FieldArray {
             if (!considerZeroes && field1.getFieldValue() == 0) {
                 continue;
             }
-            if(considerZeroes && field1.getFieldValue() == 0) return false;
+            if (considerZeroes && field1.getFieldValue() == 0) {
+                return false;
+            }
             for (SudokuField field2 : sudokuFields) {
                 if (!considerZeroes && field2.getFieldValue() == 0) {
                     continue;
                 }
-                if(considerZeroes && field2.getFieldValue() == 0) return false;
+                if (considerZeroes && field2.getFieldValue() == 0) {
+                    return false;
+                }
                 if (field1 == field2) {
                     continue;
                 }

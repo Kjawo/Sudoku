@@ -7,7 +7,7 @@ public enum Difficulty {
 
     int numberOfFieldsToRemove;
 
-    Difficulty(int _numberOfFieldsToRemove) {
-        numberOfFieldsToRemove = _numberOfFieldsToRemove;
+    Difficulty(int numberOfFieldsToRemove) {
+        this.numberOfFieldsToRemove = numberOfFieldsToRemove;
     }
 }

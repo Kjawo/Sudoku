@@ -1,13 +1,13 @@
 package sudoku;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.io.Serializable;
 
-public class SudokuField implements Serializable, Comparable<SudokuField>, Cloneable{
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class SudokuField implements Serializable, Comparable<SudokuField>, Cloneable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +26,16 @@ public class SudokuField implements Serializable, Comparable<SudokuField>, Clone
         return value;
     }
 
+    /**
+     * Set field value.
+     * @param value value
+     */
     public void setFieldValue(final int value) {
 
         this.value = value;
-        if(value < 0 || value > 9) throw new BadFieldValueException("Value is incorrect");
+        if (value < 0 || value > 9) {
+            throw new BadFieldValueException("Value is incorrect");
+        }
     }
 
     @Override

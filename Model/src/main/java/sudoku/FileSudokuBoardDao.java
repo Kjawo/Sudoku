@@ -1,6 +1,11 @@
 package sudoku;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard> {
     String fileName;
@@ -9,25 +14,36 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
         this.fileName = fileName;
     }
 
+    /**
+     * Write sudoku board.
+     * @param obj Sudoku board
+     */
     public void write(SudokuBoard obj) {
-        try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(fileName)) ){
+        try (ObjectOutputStream objectOut =
+                     new ObjectOutputStream(new FileOutputStream(fileName))) {
             objectOut.writeObject(obj);
             SudokuBoard.logger.info("Wrote to file: ".concat(fileName));
 
         } catch (FileNotFoundException e) {
             SudokuBoard.logger.error("File not found");
             e.printStackTrace();
+            throw new FileOperationException(new FileNotFoundException());
         } catch (IOException e) {
             SudokuBoard.logger.error("Error initializing stream");
             e.printStackTrace();
+            throw new FileOperationException(new FileNotFoundException());
         }
 
-        throw new FileOperationException(new FileNotFoundException());
+
     }
 
+    /**
+     * Read sudoku board.
+     * @return sudoku board
+     */
     public SudokuBoard read() {
 
-        try(ObjectInputStream oi = new ObjectInputStream((new FileInputStream(fileName)))) {
+        try (ObjectInputStream oi = new ObjectInputStream((new FileInputStream(fileName)))) {
             SudokuBoard sb1 = (SudokuBoard) oi.readObject();
             SudokuBoard.logger.info("Read from file: ".concat(fileName));
             return sb1;
@@ -44,11 +60,11 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
         }
 
         throw new FileOperationException(new FileNotFoundException());
-       // return null;
+        // return null;
     }
 
-    public void finalize() throws Throwable {
-        super.finalize();
-    }
+    //    public void finalize() throws Throwable {
+    //        super.finalize();
+    //    }
 
 }
