@@ -1,6 +1,7 @@
 package sudoku;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,9 +9,11 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -19,6 +22,8 @@ public class ChoiceWindowController {
 
     public ToggleGroup radio_group;
     public ComboBox comboBoxLang;
+    public CheckBox dbCheckbox;
+
 
     private static Difficulty difficulty;
 
@@ -99,13 +104,35 @@ public class ChoiceWindowController {
     }
 
     public void loadButton(ActionEvent actionEvent) {
-        FileChooser fileChooser = new FileChooser();
-        try {
-            File file = fileChooser.showOpenDialog(null);
-            FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file.getName());
-            loadedSudokuBoard = fileSudokuBoardDao.read();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(dbCheckbox.isSelected()) {
+            // Create the new dialog
+            TextFieldInputDialog dialog = new TextFieldInputDialog();
+            dialog.setHeaderText(null);
+            dialog.setGraphic(null);
+
+            // Show the dialog and capture the result.
+            Optional result = dialog.showAndWait();
+
+            // If the "Okay" button was clicked, the result will contain our String in the get() method
+            if (result.isPresent()) {
+                try {
+                    JdbcSudokuBoardDao dbDao = SudokuBoardDaoFactory.getJdbcDao(result.get().toString());
+                    loadedSudokuBoard = dbDao.read();
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else {
+            FileChooser fileChooser = new FileChooser();
+            try {
+                File file = fileChooser.showOpenDialog(null);
+                FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file.getName());
+                loadedSudokuBoard = fileSudokuBoardDao.read();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

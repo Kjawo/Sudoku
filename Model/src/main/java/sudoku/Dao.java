@@ -1,7 +1,9 @@
 package sudoku;
 
-public interface Dao<T> {
-    T read();
+import java.sql.SQLException;
 
-    void write(T obj);
+public interface Dao<T> {
+    T read() throws SQLException;
+
+    void write(T obj) throws Exception;
 }

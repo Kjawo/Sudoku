@@ -8,19 +8,25 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 
+import java.awt.*;
 import java.io.File;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GameBoardController {
 
+    @FXML
+    private javafx.scene.control.CheckBox dbCheckbox2;
 
     @FXML
     private GridPane sudokuBoardGrid;
     TextField[][] textFields = new TextField[9][9];
+
 
 
     private SudokuBoard sudokuBoard;
@@ -126,14 +132,33 @@ public class GameBoardController {
     }
 
     public void onActionButtonSave(ActionEvent actionEvent) {
-        fileChooser = new FileChooser();
-        try {
-            textFieldBoardToInstance();
-            File file = fileChooser.showSaveDialog(null);
-            fileSudokuBoardDao = new FileSudokuBoardDao(file.getName());
-            fileSudokuBoardDao.write(sudokuBoard);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (dbCheckbox2.isSelected()) {
+            // Create the new dialog
+            TextFieldInputDialog dialog = new TextFieldInputDialog();
+            dialog.setHeaderText(null);
+            dialog.setGraphic(null);
+            // Show the dialog and capture the result.
+            Optional result = dialog.showAndWait();
+
+            // If the "Okay" button was clicked, the result will contain our String in the get() method
+            if (result.isPresent()) {
+                try {
+                    JdbcSudokuBoardDao dbDao = SudokuBoardDaoFactory.getJdbcDao(result.get().toString());
+                    dbDao.write(sudokuBoard);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            fileChooser = new FileChooser();
+            try {
+                textFieldBoardToInstance();
+                File file = fileChooser.showSaveDialog(null);
+                fileSudokuBoardDao = new FileSudokuBoardDao(file.getName());
+                fileSudokuBoardDao.write(sudokuBoard);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
