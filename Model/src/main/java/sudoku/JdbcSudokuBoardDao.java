@@ -6,13 +6,15 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard> {
     private String boardName;
     private final static String tableName = "sudokuTable";
 
-    JdbcSudokuBoardDao(String boardName) throws Exception{
+    JdbcSudokuBoardDao(String boardName) throws Exception {
         this.boardName = boardName;
         SudokuBoardDatabase database = new SudokuBoardDatabase("sudoku");
         database.connectionToDerby();
 
         if(!database.checkIsTableExisting(tableName)){
             database.createEmptyTable(tableName);
+        } else {
+            throw new TableNotExistingException("Table does not exist");
         }
     }
 

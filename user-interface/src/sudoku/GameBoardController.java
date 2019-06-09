@@ -80,7 +80,7 @@ public class GameBoardController {
         int counter = 0;
         for(int i = 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
-                if(textFields[i][j].equals(null)) {
+                if(textFields[i][j] == null) {
                     counter++;
                 }
                 else break;
@@ -96,6 +96,8 @@ public class GameBoardController {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if(textFields[i][j].getText() == null) {
+                    sudokuBoard.set(i, j, 0);
+                } else if(textFields[i][j].getText().equals("")) {
                     sudokuBoard.set(i, j, 0);
                 } else {
                     sudokuBoard.set(i, j, Integer.parseInt(textFields[i][j].getText()));
