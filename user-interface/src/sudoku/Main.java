@@ -24,9 +24,22 @@ public class Main extends Application {
     public static Stage stage;
     private static Locale locale = new Locale("en");
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        SudokuBoardDatabase d = new SudokuBoardDatabase("sudoku");
+
+        d.connectionToDerby();
+
+        //d.dropTable("boards");
+        System.out.println(d.getAllTablesNames());
+        System.out.println(d.checkIsTableExisting("boards"));
+        d.createEmptyTable("boards");
+        System.out.println(d.checkIsTableExisting("boards"));
+
        // Locale.setDefault(Locale.forLanguageTag("pl"));
+
+
 
         stage = primaryStage;
 
