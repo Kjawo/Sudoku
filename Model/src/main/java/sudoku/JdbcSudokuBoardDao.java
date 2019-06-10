@@ -13,8 +13,6 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard> {
 
         if(!database.checkIsTableExisting(tableName)){
             database.createEmptyTable(tableName);
-        } else {
-            throw new TableNotExistingException("Table does not exist");
         }
     }
 
